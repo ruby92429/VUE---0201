@@ -89,8 +89,8 @@
           <div class="modal-content border-0">
             <div class="modal-header bg-dark text-white">
               <h5 id="productModalLabel" class="modal-title">
-                <span v-if="status">新增產品</span>
-                <!-- 依傳入openModal的status去判斷是>新增產品或編輯產品 -->
+                <span v-if="isNew">新增產品</span>
+                <!-- 依傳入isNew去判斷跳出的視窗左上的標題是新增產品或編輯產品 -->
                 <span v-else>編輯產品</span>
               </h5>
               <button
@@ -116,6 +116,7 @@
                   <h3 class="mb-3">多圖新增</h3>
                   <!-- 判斷tempProduct.imagesUrl是一個列 -->
                   <div v-if="Array.isArray(tempProduct.imagesUrl)">
+                    <!-- 以下將原html標籤的內容改放入template標籤裡的內容會作為一組，這樣做是為了要跑回圈v-for -->
                     <template
                       class="mb-1"
                       v-for="(image, key) in tempProduct.imagesUrl"
@@ -134,6 +135,7 @@
                         :src="tempProduct.imagesUrl[key]"
                       />
                     </template>
+                    <!-- 改放入template -->
                     <!-- <div
                       class="mb-1"
                       v-for="(image, key) in tempProduct.imagesUrl"
